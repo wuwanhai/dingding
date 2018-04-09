@@ -1,0 +1,415 @@
+---------------------------------------------------------------
+[ 2018-03-24T04:04:59+08:00 ] 61.166.163.105 GET /
+[ info ] dt.julongjinrong.top/ [运行时间：0.027861s][吞吐率：35.89req/s] [内存消耗：2,293.31kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000019s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001077s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept-charset' => 'GB2312,utf-8;q=0.7,*;q=0.7',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'accept' => '*/*',
+  'accept-encoding' => 'gzip,deflate,sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'host' => 'dt.julongjinrong.top',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000196s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/lang/zh-cn/index.php
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/view/index/index.html [ array (
+  0 => 'user',
+  1 => 'site',
+  2 => 'config',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:02:44+08:00 ] 42.156.251.201 GET /ding/index/index
+[ info ] dt.julongjinrong.top/ding/index/index [运行时间：0.972302s][吞吐率：1.03req/s] [内存消耗：1,946.77kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000028s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001020s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'ding',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'dt.julongjinrong.top',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'cookie' => 'think_language=zh-CN; expires=Sat, 24-Mar-2018 02:02:43 GMT; path=/',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0.2; SM-A5000 Build/LRX22C  ) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'connection' => 'close',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000201s ]
+[ info ] [ RUN ] app\ding\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/ding/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/ding/view/index/index.html [ array (
+  0 => 'config',
+  1 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:02:45+08:00 ] 113.57.246.206 GET /ding/index/index
+[ info ] dt.julongjinrong.top/ding/index/index [运行时间：0.906856s][吞吐率：1.10req/s] [内存消耗：1,947.10kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000017s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001011s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'ding',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://dt.julongjinrong.top/ding/index/index',
+  'accept-language' => 'zh-CN',
+  'user-agent' => 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; MI 5 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 UCBrowser/11.6.4.950 UWS/2.11.0.47 Mobile Safari/537.36 AliApp(DingTalk/4.3.2) com.alibaba.android.rimet/0 Channel/702008 language/zh-CN',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8,UC/163',
+  'connection' => 'keep-alive',
+  'host' => 'dt.julongjinrong.top',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000190s ]
+[ info ] [ RUN ] app\ding\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/ding/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/ding/view/index/index.html [ array (
+  0 => 'config',
+  1 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:02:45+08:00 ] 42.156.251.201 GET /ding/index/index
+[ info ] dt.julongjinrong.top/ding/index/index [运行时间：0.860273s][吞吐率：1.16req/s] [内存消耗：1,944.76kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000017s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000989s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'ding',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'dt.julongjinrong.top',
+  'accept-language' => 'zh-CN,en,*',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'Keep-Alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0.2; SM-A5000 Build/LRX22C  ) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000191s ]
+[ info ] [ RUN ] app\ding\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/ding/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/ding/view/index/index.html [ array (
+  0 => 'config',
+  1 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:02:48+08:00 ] 113.57.246.206 GET /ding/index/index
+[ info ] dt.julongjinrong.top/ding/index/index [运行时间：0.892752s][吞吐率：1.12req/s] [内存消耗：1,947.10kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000019s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001071s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'ding',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://dt.julongjinrong.top/ding/index/index',
+  'accept-language' => 'zh-CN',
+  'user-agent' => 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; MI 5 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 UCBrowser/11.6.4.950 UWS/2.11.0.47 Mobile Safari/537.36 AliApp(DingTalk/4.3.2) com.alibaba.android.rimet/0 Channel/702008 language/zh-CN',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8,UC/163',
+  'connection' => 'keep-alive',
+  'host' => 'dt.julongjinrong.top',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000196s ]
+[ info ] [ RUN ] app\ding\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/ding/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/ding/view/index/index.html [ array (
+  0 => 'config',
+  1 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:02:52+08:00 ] 113.57.246.206 GET /favicon.ico
+[ info ] dt.julongjinrong.top/favicon.ico [运行时间：0.021859s][吞吐率：45.75req/s] [内存消耗：1,632.59kb] [文件加载：53]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000019s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001060s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; MI 5 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 UCBrowser/11.6.4.950 UWS/2.11.0.47 Mobile Safari/537.36 AliApp(DingTalk/4.3.2) com.alibaba.android.rimet/0 Channel/702008 language/zh-CN',
+  'accept-language' => 'zh-CN,en-US;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'connection' => 'keep-alive',
+  'host' => 'dt.julongjinrong.top',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:05:11+08:00 ] 27.18.221.135 GET /
+[ info ] dt.julongjinrong.top/ [运行时间：0.027498s][吞吐率：36.37req/s] [内存消耗：2,290.91kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000019s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001089s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'connection' => 'Keep-Alive',
+  'host' => 'dt.julongjinrong.top',
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 2.0.50727)',
+  'accept' => '*/*',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000196s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/lang/zh-cn/index.php
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/view/index/index.html [ array (
+  0 => 'user',
+  1 => 'site',
+  2 => 'config',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:05:11+08:00 ] 27.18.221.135 GET /favicon.ico
+[ info ] dt.julongjinrong.top/favicon.ico [运行时间：0.019455s][吞吐率：51.40req/s] [内存消耗：1,629.83kb] [文件加载：53]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000016s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001026s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'connection' => 'Keep-Alive',
+  'host' => 'dt.julongjinrong.top',
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 2.0.50727)',
+  'accept' => '*/*',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T09:31:39+08:00 ] 27.18.221.135 GET /favicon.ico
+[ info ] dt.julongjinrong.top/favicon.ico [运行时间：0.020121s][吞吐率：49.70req/s] [内存消耗：1,632.24kb] [文件加载：53]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000019s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001115s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=127045848.3976390087832374300.1521085460112.5076',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'dt.julongjinrong.top',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T12:45:46+08:00 ] 111.206.36.8 GET /
+[ info ] dt.julongjinrong.top/ [运行时间：0.027497s][吞吐率：36.37req/s] [内存消耗：2,249.66kb] [文件加载：63]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000031s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001080s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'dt.julongjinrong.top',
+  'accept-language' => 'en,*',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'Keep-Alive',
+  'referer' => 'http://www.baidu.com/s?wd=DJ1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000206s ]
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/view/index/index.html [ array (
+  0 => 'user',
+  1 => 'site',
+  2 => 'config',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T13:16:02+08:00 ] 14.215.176.16 GET /ding/index/index
+[ info ] dt.julongjinrong.top/ding/index/index [运行时间：0.960452s][吞吐率：1.04req/s] [内存消耗：1,914.54kb] [文件加载：64]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000021s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001084s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'ding',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'dt.julongjinrong.top',
+  'accept-language' => 'en,*',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'Keep-Alive',
+  'referer' => 'http://www.baidu.com/s?wd=9FX',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000208s ]
+[ info ] [ RUN ] app\ding\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/ding/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/ding/view/index/index.html [ array (
+  0 => 'config',
+  1 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-24T17:27:05+08:00 ] 106.11.225.212 GET /
+[ info ] dt.julongjinrong.top/ [运行时间：0.029035s][吞吐率：34.44req/s] [内存消耗：2,293.27kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000019s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001039s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'keep-alive',
+  'accept' => 'text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2',
+  'host' => 'dt.julongjinrong.top',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'accept-encoding' => 'gzip',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000235s ]
+[ info ] [ LANG ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/lang/zh-cn/index.php
+[ info ] [ RUN ] app\index\controller\Index->index[ /home/wwwroot/dt.julongjinrong.top/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /home/wwwroot/dt.julongjinrong.top/public/../application/index/view/index/index.html [ array (
+  0 => 'user',
+  1 => 'site',
+  2 => 'config',
+) ]
+[ info ] [ LOG ] INIT File

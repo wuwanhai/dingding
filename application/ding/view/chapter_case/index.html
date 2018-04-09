@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>办案用章</title>
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/case-use-paper.css">
+    <link rel="stylesheet" href="/ding/css/upload_img.css">
+    <style>
+        .demos-header{
+            padding: 0;
+        }
+    </style>
+</head>
+<body ontouchstart>
+
+<div class="weui-tab">
+
+    <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <div class="weui-cells">
+                <div class="margin-gray"></div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">用章案件</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" readonly="readonly" placeholder="请选择案件" id="open-popup">
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </div>
+                <div class="margin-gray"></div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">案件编号</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" readonly="readonly" placeholder="选择案件自动录入" id="case_numer">
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </div>
+                <div class="margin-gray"></div>
+                <a id="format_text" class="weui-cell weui-cell_access" href="javascript:; ">
+                    <div class="weui-cell__bd">
+                        <p>格式文书</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <div class="weui-cells weui-cells_radio" style="display: none;">
+                    <label class="weui-cell weui-check__label" for="x11">
+                        <div class="weui-cell__bd">
+                            <p>是</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x11" checked="checked">
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label" for="x12">
+
+                        <div class="weui-cell__bd">
+                            <p>非</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" name="radio1" class="weui-check" id="x12" >
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                </div>
+                <div id="format_type">
+                <div class="margin-gray"></div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">文书类型</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input" type="text" readonly="readonly" placeholder="请选择类型" id="text_type">
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </div>
+                </div>
+                <div id="file_type" style="display:none;">
+                <div class="margin-gray"></div>
+                    <div class="weui-cell">
+                        <div id="container">
+                            <a href="javascript:void(0)" class="file">选择图片
+                                <input type='file' multiple accept = 'image/gif,image/jpeg,image/jpg,image/png,image/bmp' />
+                                <input type="hidden" value=""/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin-gray"></div>
+
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">用章份数</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="select-number" type="number" pattern="[0-9]*" placeholder="最多同时申请三份">
+                    </div>
+                </div>
+                <div class="margin-gray"></div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">备注</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" id="remake" placeholder="请输入">
+                    </div>
+                </div>
+                <div class="margin-gray"></div>
+                <div class="weui-btn-margin">
+                    <a href="javascript:;" class="weui-btn weui-btn_primary margin-bottom" id="submit">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="full" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header id='demos-header'>
+
+            </header>
+        </div>
+    </div>
+
+    <div id="full_text" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header id='full_ctn'>
+
+            </header>
+        </div>
+    </div>
+    <div class="weui-tabbar">
+        <a href="/ding/chapter_case/index" class="weui-tabbar__item weui-bar__item--on">
+            <div class="weui-tabbar__icon">
+                <img src="/ding/images/ba.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">办案用章</p>
+        </a>
+        <a href="/ding/chapter_case/chapter_other" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="/ding/images/qt.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">其他用章</p>
+        </a>
+        <a href="/ding/chapter_case/chapter_blank" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="/ding/images/kb1.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">空白函件</p>
+        </a>
+        <a href="/ding/chapter_case/chapter_record" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="/ding/images/yz1.png" alt="">
+            </div>
+            <p class="weui-tabbar__label">用章记录</p>
+        </a>
+    </div>
+</div>
+
+</body>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/js/select.js"></script>
+<script src="/ding/js/uploadImg.js"></script>
+<!--<script src="/ding/js/case-format.js"></script>-->
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script>
+    $(function(){
+
+        var open_config = {$config};
+        // var code;
+
+        dd.ready(function() {
+            dd.runtime.permission.requestAuthCode({
+                corpId: "{:CORPID}",
+                onSuccess: function(result) {
+                    add_list({code:result.code});
+
+                },
+                onFail : function(err) {}
+
+            });
+
+            dd.runtime.permission.requestAuthCode({
+                corpId: "{:CORPID}",
+                onSuccess: function(result) {
+
+                    submit(result.code);
+                },
+                onFail : function(err) {}
+
+            });
+        });
+
+
+        var file_url = [];
+        var params = {
+            container: '#container',
+            url: '/ding/base/upload ',
+            dragDrop: false,
+            onDragLeave: function(target) {
+
+            },
+            onSuccess:function(data){
+                console.log(data.imgData.data);
+                file_url.push(data.imgData.data);
+                console.log(file_url);
+            },
+            onFailure:function(file, XMLHttpRequest, textStatus, errorThrown){
+                console.log(file, XMLHttpRequest, textStatus, errorThrown);
+            }
+        };
+
+        var uploadImg1 = new UploadImg(params);
+
+        $('#format_text').click(function(){
+            $('.weui-cells_radio').fadeToggle();
+        })
+
+        $('#x12').click(function(){
+            $('#format_type').fadeOut();
+            $('#file_type').fadeIn();
+        })
+
+        $('#x11').click(function(){
+            $('#format_type').fadeIn();
+            $('#file_type').fadeOut();
+        })
+
+        $('#open-popup').click(function(){
+            $('#full').popup();
+        })
+
+        $('#demos-header').on('click','.demos-header',function(){
+            $(this).children('p.child').fadeToggle();
+        })
+
+        $('#text_type').click(function(){
+            $('#full_text').popup();
+        })
+
+
+        $.ajax({
+            url:'/ding/api/writ_list',
+            type:'GET',
+            dataType:'JSON',
+            beforeSend:function () {
+
+            },
+            success:function (result) {
+                console.log(result);
+
+                for (var y in result.data) {
+
+                    $('#full_ctn').append('<div class="demo-header"> </div>');
+                    var title_two = ' <div class="weui-cell weui-cell_access father">' + result.data[y].name + '</div>';
+                    $('.demo-header').eq($('.demo-header').length-1).append(title_two);
+
+                    for (var z in result.data[y].children) {
+                        var ws = result.data[y].children[z];
+                        var ctn = '<p class="weui-cell weui-cell_access child close-popup" style="display: none;" writ_id="'+ws.id+'"> ' + ws.name + ' </p>';
+                        $('.demo-header').eq($('.demo-header').length-1).append(ctn)
+                    }
+                }
+
+                $('#full_ctn').on('click','.demo-header',function(){
+                    $(this).children('p.child').fadeToggle();
+                })
+
+                $('#full_ctn').on('click','.child',function(){
+                    var child_type = $(this).text();
+                    var writ_name = $(this).attr('writ_id');
+                    localStorage.w_name = writ_name;
+                    $('#text_type').val(child_type);
+
+                })
+
+            }
+        })
+
+        function add_list(data={}) {
+            $.ajax({
+                url:'/ding/api/chapter_case_list',
+                type:'GET',
+                data:data,
+                dataType:'JSON',
+                beforeSend:function () {
+
+                },
+                success:function (result) {
+                    console.log(result);
+
+                    for (var x in result.data) {
+                        $('#demos-header').append('<div class="demos-header"> </div>');
+                        var title = ' <h3 class="weui-cell weui-cell_access father">' + result.data[x].name + '</h3>';
+                        $('.demos-header').eq($('.demos-header').length-1).append(title);
+                        console.log(result.data[x]);
+                        for (var i in result.data[x].children) {
+                            var cs = result.data[x].children[i];
+
+                            var cont = '<p class="weui-cell weui-cell_access child close-popup" data_id="'+cs.id+'" style="display: none;" data="'+cs.case_num+'"> ' + cs.cname+  ' </p>';
+                            $('.demos-header').eq($('.demos-header').length-1).append(cont)
+                        }
+                    }
+
+                    $('#demos-header').on('click','.child',function(){
+                        var child_text = $(this).text();
+                        var child_data = $(this).attr('data');
+                        var data_id = $(this).attr('data_id');
+
+                        localStorage.id = data_id;
+
+                        $('#open-popup').val(child_text);
+                        $('#case_numer').val(child_data);
+
+                    })
+
+                }
+            })
+
+        }
+
+        function submit(code) {
+
+            $('#submit').click(function () {
+                let case_type = $('#open-popup').val();
+                let case_number = $('#case_numer').val();
+                let text_type = $('#text_type').val();
+                let select = $('#select-number').val();
+                let remake = $('#remake').val();
+
+                var radio1 = $('input[name="radio1"]:checked').val();
+
+                if(radio1 == 'on') {
+                    radio1 = 0
+                }else {
+                    radio1 = 1
+                }
+
+
+                var case_id = localStorage.id;
+                var w_name = localStorage.w_name;
+
+                let data = {
+                    type: 1,
+                    code: code,
+                    case_id: case_id,
+                    case_name: case_type,
+                    case_num: case_number,
+                    writ_id: w_name,
+                    is_writ: radio1,
+                    chapter_num: select,
+                    remake: remake,
+                    file_url: file_url
+                }
+
+                console.log(data);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/ding/api/add_chapter',
+                    dataType: 'json',
+                    data: data,
+                    beforeSend: function () {
+                        $.showLoading();
+                    },
+                    success: function (result) {
+
+                        $.hideLoading();
+                        $.toast("提交成功");
+
+                        window.location.href = '/ding/chapter_case/chapter_record'
+                    },
+                    error: function () {
+
+                    }
+                })
+
+            })
+        }
+    })
+</script>
+</html>

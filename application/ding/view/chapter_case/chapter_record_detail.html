@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用章详情</title>
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/index.css">
+</head>
+
+<body>
+
+<div class="weui-panel__bd">
+    <div id="content"></div>
+</div>
+
+</body>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script>
+    dd.ready(function () {
+        dd.biz.navigation.setRight({
+            show: true,//控制按钮显示， true 显示， false 隐藏， 默认true
+            control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+            text: '刷新',//控制显示文本，空字符串表示显示默认文本
+            onSuccess: function (result) {
+                // window.location.href = '/ding/manage_case/new_woke_note?id={$Think.get.id}';
+                location.reload()
+            },
+            onFail: function (err) {
+            }
+
+        })
+    })
+</script>
+<script>
+    $(function(){
+        let case_id = {$Think.get.case_id};
+        $.ajax({
+            type:'GET',
+            url:'/ding/api/chapter_list',
+            dataType:'JSON',
+            data:{case_id:case_id},
+            beforeSend:function () {
+
+            },
+            success:function (result) {
+                let data = result.data;
+                for(let i in data) {
+
+                let ctn = `<div class="weui-media-box weui-media-box_text">
+                        <h4 class="weui-media-box__title">文书一</h4>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">申 请人:</li>
+                    <li class="weui-media-box__info__meta"> 吴万海 </li>
+                    <li class="weui-media-box__info__meta">申请时间</li>
+                    <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">${data[i].create_time}</li>
+                        </ul>
+                        </div>`
+                    $('#content').append(ctn);
+                }
+            },
+            error:function (result) {
+                console.log(result)
+            }
+        })
+    })
+
+</script>
+</html>

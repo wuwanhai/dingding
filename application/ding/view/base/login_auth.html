@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
+<script>
+    dd.ready(function () {
+        dd.runtime.permission.requestAuthCode({
+            corpId: '{:CORPID}',
+            onSuccess: function (result) {
+                if (result.code) {
+                    var code = result.code;
+                    alert(code);
+//                    window.location.href = '/ding/base/login_auth?code=' + code;
+                } else {
+//                    window.location.href = '/ding/index';
+                }
+            },
+            onFail: function (err) {
+//                window.location.href = '/ding/index';
+            }
+
+        });
+    });
+</script>
+</body>
+</html>

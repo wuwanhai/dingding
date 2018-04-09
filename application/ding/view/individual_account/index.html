@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>账号助手</title>
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/account.css">
+</head>
+
+<body ontouchstart>
+<div class="margin-gray"></div>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>个人账户</p>
+        </div>
+    </div>
+</div>
+<div class="weui-cells">
+    <div class="weui-flex text-align-center" id="content">
+
+    </div>
+</div>
+<div class="margin-gray"></div>
+
+<div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="/ding/individual_account/case_expend_list">
+        <div class="weui-cell__bd">
+            <p>办案支出</p>
+            <p id="asd"></p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+    </a>
+</div>
+
+</body>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+<script>
+   $(function () {
+
+       var code;
+
+       dd.ready(function () {
+
+           dd.runtime.permission.requestAuthCode({
+               corpId: "{:CORPID}",
+               onSuccess: function(result) {
+                   code = result.code;
+                   add();
+
+               },
+               onFail : function(err) {}
+
+           });
+       })
+
+       function add() {
+           var money = 0;
+           var buy_money = 0;
+           // var code_str = localStorage.code;
+           // console.log(code_str);
+           var data = {code: code};
+           $.ajax({
+               type: 'GET',
+               url: "/ding/api/account_assistant",
+               dataType: 'json',
+               data: data,
+               beforeSend: function (result) {
+                   // console.log(result.data);
+               },
+               success: function (result) {
+                   var money = 0;
+                   var buy_money = 0;
+
+                   if (result.code == 1) {
+                       money = result.data.money;
+                       buy_money = result.data.buy_money;
+                   }
+
+                   var ctn = `<div class="weui-flex__item">
+            <p class="acc-margin-m">总金额（元）</p>
+            <p class="acc-margin-z">${money}</p>
+        </div>
+        <div class="weui-flex__item">
+            <p class="acc-margin-m">可支配（元）</p>
+            <p class="acc-margin-k">${buy_money}</p>
+        </div>`;
+
+                   $('#content').append(ctn);
+               }
+           })
+       }
+
+   })
+</script>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新建支出</title>
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/case-use-paper.css">
+    <link rel="stylesheet" href="/ding/css/upload_img.css">
+</head>
+
+<body ontouchstart>
+<!--<div class="margin-gray"></div>-->
+<div class="weui-cells">
+    <!--<div class="weui-cell">-->
+        <!--<div class="weui-cell__hd">-->
+            <!--<label class="weui-label">案件名称</label>-->
+        <!--</div>-->
+        <!--<div class="weui-cell__bd">-->
+            <!--<input class="weui-input" type="text" id="case_name" placeholder="请填写">-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="margin-gray"></div>
+
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label class="weui-label">用途</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="text" id="porpuse" placeholder="请选择">
+        </div>
+    </div>
+
+    <div class="margin-gray"></div>
+
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label class="weui-label">金额</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="number" id="money" placeholder="单位（元）">
+        </div>
+    </div>
+    <div class="margin-gray"></div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label class="weui-label">日期</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="date" id="date" placeholder="请选择">
+        </div>
+    </div>
+
+    <div class="margin-gray"></div>
+
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label class="weui-label">备注</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" id="remake" type="text" placeholder="请选择">
+        </div>
+    </div>
+
+    <div class="margin-gray"></div>
+
+    <div class="weui-cell">
+        <div id="container">
+            <a href="javascript:void(0)" class="file">选择图片
+                <input type='file' multiple accept = 'image/gif,image/jpeg,image/jpg,image/png,image/bmp' />
+                <input type="hidden" value=""/>
+            </a>
+        </div>
+    </div>
+
+    <div class="margin-gray"></div>
+    <div class="weui-btn-margin">
+        <a href="javascript:;" class="weui-btn weui-btn_primary" id="submit">提交</a>
+    </div>
+
+</div>
+</body>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/js/uploadImg.js"></script>
+<script>
+    var code;
+
+    dd.ready(function() {
+        dd.runtime.permission.requestAuthCode({
+            corpId: "{:CORPID}",
+            onSuccess: function(result) {
+                code = result.code;
+
+            },
+            onFail : function(err) {}
+
+        });
+
+    });
+</script>
+<script>
+    dd.ready(function() {
+
+        dd.biz.navigation.setRight({
+            show: false,//控制按钮显示， true 显示， false 隐藏， 默认true
+            control:false,//是否控制点击事件，true 控制，false 不控制， 默认false
+            text: '',//控制显示文本，空字符串表示显示默认文本
+            onSuccess: function (result) {
+                // window.location.href = '/ding/individual_account/new_case_expend';
+            },
+            onFail: function (err) {
+            }
+
+        })
+    })
+</script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script>
+    $(function(){
+
+        var images = [];
+        var params = {
+            container: '#container',
+            url: '/ding/base/upload ',
+            dragDrop: false,
+            onDragLeave: function(target) {
+
+            },
+            onSuccess:function(data){
+                console.log(data);
+                images.push(data.imgData.data);
+                console.log(images);
+            },
+            onFailure:function(file, XMLHttpRequest, textStatus, errorThrown){
+                console.log(file, XMLHttpRequest, textStatus, errorThrown);
+            }
+        };
+
+        var uploadImg1 = new UploadImg(params);
+
+        $('#submit').click(function () {
+
+            // let case_name = $('#case_name').val();
+            let date = $('#date').val();
+            let money = $('#money').val();
+            let porpuse = $('#porpuse').val();
+            let remake = $('#remake').val();
+            let folder_id = {$Think.get.folder_id};
+
+            let data = {
+                images:images,
+                title:'',
+                expend_time:date,
+                money:money,
+                porpuse:porpuse,
+                remake:remake,
+                folder_id:folder_id
+            }
+            $.ajax({
+                type:'POST',
+                url:'/ding/api/add_case_expend',
+                dataType:'JSON',
+                data:data,
+                beforeSend:function () {
+                    window.location.href = '/ding/individual_account/case_expend_detail?folder_id='+folder_id;
+                },
+                success:function(result) {
+                    console.log(result);
+                }
+            })
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用章详情</title>
+
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/case-use-paper.css">
+    <link rel="stylesheet" href="/ding/css/case-details.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<style>
+    .flex_content {
+        display: flex;
+        width: 100%;
+        height: 2rem;
+        background: white;
+        text-align: center;
+        line-height: 2rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: #38ADFF;
+        padding: 8px 0;
+        margin-top: 2rem;
+        z-index: 1000;
+        /*justify-content: center;
+    align-items: center;*/
+    }
+
+    .flex_button_left {
+        flex: 1;
+        border-right: 1px solid #e5e5e5;
+        /*border-color: black; */
+    }
+
+    .flex_button_right {
+        flex: 1;
+        border-left: 1px solid #e5e5e5;
+    ;
+        /*border: 1px solid black; */
+    }
+</style>
+<body ontouchstart>
+
+<div class="weui-tab">
+    <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <div class="margin-gray"></div>
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd" id="title_info">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="content_case">
+
+            </div>
+            <div id="content_default">
+
+            </div>
+
+
+            <div class="margin-gray"></div>
+            <div id="litigation"></div>
+            <div class="margin-bottom"></div>
+
+        </div>
+    </div>
+</div>
+
+<div id="flex_content" class="flex_content" style="display: none;">
+    <div class="flex_button_left" id="is_agree">同意</div>
+    <div class="flex_button_right" id="no_angree">拒绝</div>
+</div>
+
+</body>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script>
+
+    $(function () {
+        FastClick.attach(document.body);
+
+        var id = '{$id}';
+
+        console.log(id);
+
+        var code;
+
+        dd.ready(function() {
+
+            add(id);
+
+            dd.runtime.permission.requestAuthCode({
+                corpId: "{:CORPID}",
+                onSuccess: function(result) {
+                    code = result.code;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ding/base/get_user',
+                        data: {
+                            code:code
+                        },
+                        dataType: 'json',
+                        beforeSend: function () {
+
+                        },
+                        success:function (result) {
+                            if(result == '141622563826067052' || result == '135331244821362564'){
+                                $('#flex_content').css('display','flex');
+                            }
+                            console.log(result);
+                            // $('#flex_content').css('display','block')
+                        },
+                        error:function () {
+
+                        }
+                    })
+                },
+                onFail : function(err) {}
+            });
+        });
+
+
+
+
+        $('#is_agree').click(function () {
+            is_agree(1,id);
+
+        })
+
+        $('#no_agree').click(function () {
+            is_agree(2,id);
+        });
+
+
+        function is_agree(type,id) {
+            dd.runtime.permission.requestAuthCode({
+                corpId: "{:CORPID}",
+                onSuccess: function(result) {
+                    code = result.code;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ding/api/is_agree',
+                        data: {
+                            id:id,
+                            is_agree:type,
+                            code:code
+                        },
+                        dataType: 'json',
+                        beforeSend: function () {
+
+                        },
+                        success:function (result) {
+                            console.log(result);
+
+                        },
+                        error:function () {
+
+                        }
+                    })
+                },
+                onFail : function(err) {}
+            });
+        }
+
+        function add(id){
+
+            dd.runtime.permission.requestAuthCode({
+                corpId: "{:CORPID}",
+                onSuccess: function(result) {
+                    code = result.code;
+
+                    $.ajax({
+                        type:'GET',
+                        url:'/ding/api/chapter_detail',
+                        data:{id:id},
+                        dataType:'json',
+                        beforeSend:function () {
+
+                        },
+                        success:function(result){
+
+                            console.log(result);
+                            data = result.data;
+                            var abc;
+                            if (data.file_url == null) {
+                                 abc = '无';
+                            } else {
+                                for(let i in data.file_url) {
+                                    var abc = `<a href=${data.file_url[i]}>附件</a>`
+                                }
+                            }
+
+                            // var abc = '1';
+
+                            if(data.type == 1) {
+
+                                var banan =  `<div class="weui-panel">
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_text">
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">用章案件：</li>
+                            <li class="weui-media-box__info__meta">${data.case_name}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">编号：</li>
+                            <li class="weui-media-box__info__meta">${data.case_id}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">函件类型：</li>
+                            <li class="weui-media-box__info__meta">${data.writ_id}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">函件名称：</li>
+                            <li class="weui-media-box__info__meta">${data.case_name}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">用章份数：</li>
+                            <li class="weui-media-box__info__meta">${data.case_num}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">申请时间：</li>
+                            <li class="weui-media-box__info__meta">${data.create_time}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">附件：</li>
+                            <li class="weui-media-box__info__meta">${abc}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">备注：</li>
+                            <li class="weui-media-box__info__meta">${data.remake}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+`;
+                                $('#title_info').append('<p>办案用章</p>')
+                                $('#content_case').append(banan);
+                            }
+
+                            if(data.type == 2) {
+                                var  qt=  `<div class="weui-panel">
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_text">
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">用章事由</li>
+                            <li class="weui-media-box__info__meta">${data.reason}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">申请时间：</li>
+                            <li class="weui-media-box__info__meta">${data.create_time}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">用章份数：</li>
+                            <li class="weui-media-box__info__meta">${data.num}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">备注：</li>
+                            <li class="weui-media-box__info__meta">${data.remake}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">附件：</li>
+                            <li class="weui-media-box__info__meta">${abc}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+`;
+                                $('#title_info').append('<p>其他用章</p>')
+
+                                $('#content_case').append(qt);
+                            }
+
+                            if(data.type == 3) {
+                                var kb =  `<div class="weui-panel">
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_text">
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">当事人姓名</li>
+                            <li class="weui-media-box__info__meta">${data.name}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">申请时间：</li>
+                            <li class="weui-media-box__info__meta">${data.create_time}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">用章份数：</li>
+                            <li class="weui-media-box__info__meta">${data.num}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">申请原因：</li>
+                            <li class="weui-media-box__info__meta">${data.reason}</li>
+                        </ul>
+                        <ul class="weui-media-box__info">
+                            <li class="weui-media-box__info__meta">附件：</li>
+                            <li class="weui-media-box__info__meta">${abc}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+`;
+                                $('#title_info').append('<p>空白函件</p>')
+                                $('#content_case').append(kb);
+                            }
+
+
+                        },
+                        complete:function () {
+                            // console.log(window.location.href);
+                            // console.log(id);
+                        },
+                        error:function () {
+                            console.log(data);
+                        }
+                    })
+
+                },
+                onFail : function(err) {}
+            });
+        }
+
+    });
+</script>
+</html>

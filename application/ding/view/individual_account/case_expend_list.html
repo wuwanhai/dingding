@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>账号助手</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/account.css">
+</head>
+
+<body ontouchstart>
+
+<div class="bd">
+    <div class="page__bd">
+        <div class="weui-cells" id="content">
+
+        </div>
+    </div>
+</div>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/js/jquery-weui.js"></script>
+<script>
+
+    $(function(){
+        FastClick.attach(document.body);
+        $('.weui-cell_swiped').swipeout();
+
+        dd.ready(function () {
+
+            dd.runtime.permission.requestAuthCode({
+                corpId: "{:CORPID}",
+                onSuccess: function(result) {
+                    var data = {
+                        code:result.code
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ding/api/folder_expend_list',
+                        dataType: 'json',
+                        data:data,
+                        beforeSend: function () {
+
+                        },
+                        success: function (result) {
+
+                            for(let x in result.data) {
+                                var a = result.data[x].case_name;
+                                var b = result.data[x].name;
+                                var c = result.data[x].id;
+                                console.log(result,'222');
+                                var e = '<span class="color-red">未结清</span>';
+                                if(result.data[x].status == 1) {
+                                    e = `<span>已结清</span>`;
+                                }
+
+                                var ctn = `<div class="weui-cell weui-cell_swiped">
+    <div class="weui-cell__bd">
+
+            <div class="weui-media-box weui-media-box_text">
+                <a href="/ding/individual_account/case_expend_detail?folder_id=${c}">
+                <h4 class="weui-media-box__title">${a}</h4>
+                </a>
+                <ul class="weui-media-box__info">
+                    <li class="weui-media-box__info__meta">承办人：</li>
+                    <li class="weui-media-box__info__meta">${b}</li>
+                    <div class="weui-cell__ft money_status" onclick="change_status(${c});">${e}</div>
+                </ul>
+            </div>
+
+    </div>
+    <div class="weui-cell__ft">
+        <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:" onclick="del(${c}); ">删除</a>
+    </div>`
+
+                                $('#content').append(ctn);
+                            }
+
+                        },
+                        error: function () {
+
+                        }
+                    })
+
+                }
+            });
+
+            dd.biz.navigation.setRight({
+                show: true,//控制按钮显示， true 显示， false 隐藏， 默认true
+                control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+                text: '新建',//控制显示文本，空字符串表示显示默认文本
+                onSuccess : function(result) {
+                    location.href = '/ding/individual_account/new_folder_expend';
+                },
+                onFail : function(err) {}
+            });
+
+        })
+    })
+
+
+    function change_status(id) {
+
+        dd.runtime.permission.requestAuthCode({
+            corpId: "{:CORPID}",
+            onSuccess: function(result) {
+
+                let code = result.code;
+
+                dd.device.notification.actionSheet({
+                    title: "选择状态？",
+                    cancelButton: '取消',
+                    otherButtons: ["未结清","已结清"],
+                    onSuccess:function(result) {
+                        let status = result.buttonIndex;
+                        let data = {
+                            id:id,
+                            code:code,
+                            status:status
+                        };
+                        console.log('1',data);
+                        $.ajax({
+                            url:'/ding/api/expend_status',
+                            dataType:'JSON',
+                            type:'POST',
+                            data:data,
+                            success:function (result) {
+                                console.log(result);
+                                location.reload();
+                            }
+                        })
+                    },
+                    onFail : function(err) {}
+                })
+            }
+        });
+    }
+
+    function del(id) {
+        $.ajax({
+            url: '/ding/api/del_case_expend',
+            dataType: 'JSON',
+            type: 'POST',
+            data: {id: id},
+            beforeSend: function () {
+
+            },
+            success: function () {
+
+            }
+        })
+    }
+
+    $('.delete-swipeout').click(function () {
+        $(this).parents('.weui-cell').remove()
+    })
+    $('.close-swipeout').click(function () {
+        $(this).parents('.weui-cell').swipeout('close')
+    })
+</script>
+</body>
+</html>

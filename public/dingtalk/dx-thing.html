@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单项法律顾问</title>
+    <link rel="stylesheet" href="lib/weui.min.css">
+    <link rel="stylesheet" href="css/xs-case.css">
+    <link rel="stylesheet" href="css/weui.css">
+</head>
+
+<body>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">案源</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="case-source" type="text" placeholder="请选择">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">委托人姓名/名称</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请填写">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">委托人联系方式</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请填写">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">委托事项</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请填写">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">承办律师</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="person-select" type="text" placeholder="请填写">
+            </div>
+        </div>
+        <div class="margin-gray"></div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">收费金额</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" placeholder="单位（元）">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">缴费方式</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="pay-method" type="text" placeholder="请选择">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="备注：请填写" rows="2"></textarea>
+                <div class="weui-textarea-counter">
+                    <span>0</span>/200</div>
+            </div>
+        </div>
+        <div class="margin-gray"></div>
+
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>是否涉及以下事项</p>
+            </div>
+            <div class="weui-cell__ft">
+            </div>
+        </a>
+        <div class="weui-cells weui-cells_checkbox">
+            <label class="weui-cell weui-check__label" for="s11">
+                <div class="weui-cell__hd">
+                    <input type="checkbox" class="weui-check" name="checkbox1" id="s11" checked="checked">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>涉及国家安全</p>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s12">
+                <div class="weui-cell__hd">
+                    <input type="checkbox" name="checkbox1" class="weui-check" id="s12">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>涉及公共利益</p>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s13">
+                <div class="weui-cell__hd">
+                    <input type="checkbox" class="weui-check" name="checkbox1" id="s13">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>涉及其他案外干扰因素</p>
+                </div>
+            </label>
+
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-textarea" placeholder="如有，请填写案情简介" rows="2"></textarea>
+                        <div class="weui-textarea-counter">
+                            <span>0</span>/200</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="margin-gray"></div>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>特殊约定</p>
+            </div>
+            <div class="weui-cell__ft">
+            </div>
+        </a>
+        <div class="weui-cells weui-cells_radio">
+            <label class="weui-cell weui-check__label" for="x11">
+                <div class="weui-cell__bd">
+                    <p>有</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="radio1" id="x11">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="x12">
+
+                <div class="weui-cell__bd">
+                    <p>无</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" name="radio1" class="weui-check" id="x12" checked="checked">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-textarea" placeholder="备注：特殊约定将写入合同" rows="2"></textarea>
+                        <div class="weui-textarea-counter">
+                            <span>0</span>/200</div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-btn-margin">
+                <a href="javascript:;" class="weui-btn weui-btn_primary">提交</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script src="lib/jquery-2.1.4.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/select.js"></script>
+
+</html>

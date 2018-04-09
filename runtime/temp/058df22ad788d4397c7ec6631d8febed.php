@@ -1,0 +1,205 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:97:"/home/wwwroot/dt.julongjinrong.top/public/../application/ding/view/manage_case/new_woke_note.html";i:1521601285;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新建手记</title>
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/upload_img.css">
+</head>
+
+<body ontouchstart>
+<div class="margin-gray"></div>
+
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">标题</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="text" placeholder="请填写标题" id="title">
+        </div>
+    </div>
+    <div class="margin-gray"></div>
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="手记请输入" rows="4" id="content"></textarea>
+                <div class="weui-textarea-counter">
+                    </div>
+            </div>
+        </div>
+        <div class="margin-gray"></div>
+
+        <div id="click_address" class="weui-cells__title">地点
+            <span id="address">点击获取地址</span>
+        </div>
+        <div class="margin-gray"></div>
+
+        <div class="weui-cell">
+            <div id="container">
+                <a href="javascript:void(0)" class="file">选择图片1
+                    <input type='file' multiple accept = 'image/gif,image/jpeg,image/jpg,image/png,image/bmp' />
+                    <input type="hidden" value=""/>
+                </a>
+            </div>
+        </div>
+
+        <div class="margin-gray"></div>
+        <div class="weui-btn-margin">
+            <a href="javascript:;" class="weui-btn weui-btn_primary" id="submit">提交</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script src="/ding/js/uploadImg.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script>
+    var code;
+    var user_name;
+    var user_img;
+    var case_id = <?php echo \think\Request::instance()->get('id'); ?>;
+    var open_config = <?php echo $config; ?>;
+
+    dd.config({
+        agentId: '162790584', // 必填，微应用ID
+        corpId: open_config.corpId,//必填，企业ID
+        timeStamp: open_config.timeStamp, // 必填，生成签名的时间戳
+        nonceStr: open_config.nonceStr, // 必填，生成签名的随机串
+        signature: open_config.signature, // 必填，签名
+        type:0,   //选填，0表示微应用的jsapi，1表示服务窗的jsapi，不填默认为0。该参数从dingtalk.js的0.8.3版本开始支持
+        jsApiList : [ 'device.geolocation.get','biz.map.search','biz.user.get' ]
+    });
+
+    dd.ready(function(){
+
+        dd.runtime.permission.requestAuthCode({
+            corpId: "<?php echo CORPID; ?>",
+            onSuccess: function(result) {
+                code = result.code;
+                console.log(code);
+
+            },
+            onFail : function(err) {}
+
+        });
+
+        dd.biz.user.get({
+            onSuccess: function (info) {
+                // logger.e('userGet success: ' + JSON.stringify(info));
+                user_img = info.avatar;
+                user_name = info.nickName;
+            },
+            onFail: function (err) {
+                logger.e('userGet fail: ' + JSON.stringify(err));
+            }
+        });
+
+        $('#click_address').click(function () {
+
+            let longitude ;
+            let latitude ;
+
+            dd.device.geolocation.get({
+                targetAccuracy : Number,
+                coordinate : Number,
+                withReGeocode : Boolean,
+                useCache:true, //默认是true，如果需要频繁获取地理位置，请设置false
+                onSuccess : function(result) {
+
+                    longitude = result.longitude;
+                    latitude = result.latitude;
+
+                },
+                onFail : function(err) {}
+            });
+
+           dd.biz.map.search({
+               latitude: latitude, // 纬度
+               longitude: longitude, // 经度
+               scope: 500, // 限制搜索POI的范围；设备位置为中心，scope为搜索半径
+
+               onSuccess: function (result) {
+                   let loc = result.city+result.title;
+                   $('#address').text(loc);
+               },
+               onFail: function (err) {
+               }
+           });
+
+        })
+
+    });
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        var images = [];
+        var params = {
+            container: '#container',
+            url: '/ding/base/upload ',
+            dragDrop: false,
+            onDragLeave: function(target) {
+
+            },
+            onSuccess:function(data){
+                console.log(data);
+                images.push(data.imgData.data);
+                console.log(images);
+            },
+            onFailure:function(file, XMLHttpRequest, textStatus, errorThrown){
+                console.log(file, XMLHttpRequest, textStatus, errorThrown);
+            }
+        };
+
+        var uploadImg1 = new UploadImg(params);
+        
+        $('#submit').click(function(){
+
+            var title = $('#title').val();
+            var content = $('#content').val();
+            var address = $('#address').text();
+
+            var data = {
+                case_id:case_id,
+                images:images,
+                code:code,
+                title:title,
+                content:content,
+                address:address,
+                avatar:user_img,
+                nickName:user_name
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/ding/api/add_woke_note',
+                data: data,
+                dataType: 'json',
+                beforeSend: function (result) {
+                    console.log(data);
+                    $.showLoading()
+                },
+                success:function (result) {
+                    $.hideLoading()
+                    window.location.href = `/ding/manage_case/woke_note?id=${case_id}`
+                },
+                error:function () {
+                    $.toast("操作失败", "forbidden");
+                }
+            })
+        })
+    })
+</script>
+</html>

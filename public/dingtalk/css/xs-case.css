@@ -1,0 +1,10 @@
+ .margin-gray {
+     width: 100%;
+     height: 24px;
+     background: #f8f8f8;
+ }
+ .weui-btn-margin {
+     padding: 0 3%;
+     margin: 8px 0;
+ }
+ 

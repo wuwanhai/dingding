@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>案件管理</title>
+    <link rel="stylesheet" href="lib/weui.min.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/case-manage.css">
+</head>
+
+<body ontouchstart>
+    <div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form" action="#">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+
+    <div class="case-menu">
+        <select class="case-select">
+            <option value="0">全部</option>
+            <option value="1">已结案</option>
+            <option value="1">已收案</option>
+            <option value="1">未收案</option>
+
+        </select>
+       
+        <a class="case-new" href="college-case.html">新建</a>
+        </a>
+    </div>
+
+    <a href="case-details.html" class="weui-cell_access weui-cell_link">
+        <div class="weui-panel">
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">
+                        <span class="case-manage-title">大连万达集团资产纠纷</span>
+                        <span class="case-child-title">未收案</span>
+                    </h4>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">2018MS001</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">民事诉讼</li>
+                    </ul>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">委托人：</li>
+
+                        <li class="weui-media-box__info__meta">大连万达集团</li>
+                    </ul>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">2018-01-01</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">孔明承办</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <a href="case-details.html" class="weui-cell_access weui-cell_link">
+        <div class="weui-panel">
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">
+                        <span class="case-manage-title">北京现代集团资产纠纷</span>
+                        <span class="case-child-title">已收案</span>
+                    </h4>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">2018MS002</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">民事诉讼</li>
+                    </ul>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">委托人：</li>
+
+                        <li class="weui-media-box__info__meta">北京现代汽车有限公司</li>
+                    </ul>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">2018-01-11</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">孔明承办</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <a href="javascript:void(0);" class="weui-cell_access weui-cell_link">
+        <div class="weui-panel">
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">
+                        <span class="case-manage-title">北京现代集团资产纠纷</span>
+                        <span class="case-child-title">已收案</span>
+                    </h4>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">2018XS002</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">行政诉讼</li>
+                    </ul>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">委托人：</li>
+
+                        <li class="weui-media-box__info__meta">北京现代汽车有限公司</li>
+                    </ul>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta">2018-01-11</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">孔明承办</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </a>
+
+</body>
+<script src="lib/fastclick.js"></script>
+<script src="lib/jquery-2.1.4.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+</html>

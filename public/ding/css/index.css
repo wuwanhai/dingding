@@ -1,0 +1,43 @@
+#banner {
+    width: 96%;
+    height: 123.5px;
+    background-image: url('../images/banner.png');
+    background-size:100% 123.5px;
+    margin: 2% auto;
+    border-radius: 10px;
+    /* margin: 5px 24px; */
+
+}
+
+#announcement {
+    width: 96%;
+    height: 36px;
+    margin: 0px auto; 
+    border-bottom: 1px solid #C8C8C8;
+    line-height: 36px;
+    font-size:12px;
+    
+    
+}
+
+.ant-more {
+    color:#D8D8D8;
+    text-align: right;
+    margin-left:160px;
+}
+
+#title-discription {
+    font-size: 16px;
+    margin:10px 2%;
+    
+}
+
+.gg-icon {
+    height: 12px;
+    width:14px;
+}
+
+.gg-color {
+    margin-left: 3px;
+    color: #979797;
+}

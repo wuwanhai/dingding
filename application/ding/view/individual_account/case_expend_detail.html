@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>办案支出详情</title>
+    <link rel="stylesheet" href="/ding/lib/weui.min.css">
+    <link rel="stylesheet" href="/ding/css/weui.css">
+    <link rel="stylesheet" href="/ding/css/account.css">
+    <link rel="stylesheet" href="/ding/css/case-details.css">
+    <style>
+        .head-portrait {
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body ontouchstart>
+<div class="weui-panel">
+    <div class="weui-panel__bd">
+        <div id="content">
+
+        </div>
+        <div class="margin-gray"></div>
+        <div class="weui-cell">
+            <div>总计：<span id="sum">0</span>元</div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src='https://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js?spm=a219a.7629140.0.0.t4bEpv&file=dingtalk.js'></script>
+<script src="/ding/lib/fastclick.js"></script>
+<script src="/ding/lib/jquery-2.1.4.js"></script>
+<script src="/ding/js/jquery-weui.min.js"></script>
+<script src="/ding/js/swiper.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script>
+    var code;
+
+    dd.ready(function() {
+
+        dd.biz.navigation.setRight({
+            show: true,//控制按钮显示， true 显示， false 隐藏， 默认true
+            control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+            text: '新建',//控制显示文本，空字符串表示显示默认文本
+            onSuccess: function (result) {
+                window.location.href = '/ding/individual_account/new_case_expend?folder_id={$Think.get.folder_id}';
+            },
+            onFail: function (err) {
+            }
+
+        })
+    })
+
+</script>
+<script>
+    $(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/ding/api/case_expend_detail?folder_id={$Think.get.folder_id}',
+            dataType: 'json',
+            beforeSend: function () {
+
+            },
+            success: function (result) {
+                var arr = [];
+                var brr;
+                for(let x in result.data) {
+                var a = result.data[x].title;
+                    // var a = result.data[x].title;
+                    var b = result.data[x].expend_time;
+                    var c = result.data[x].porpuse;
+                    var d = result.data[x].money;
+                    var z = parseInt(d);
+                    arr.push(z);
+                    console.log(arr);
+
+                    var e = result.data[x].remake;
+                    var f = '';
+                    for (let h in result.data[x].image_url){
+                        f +=`<img class="head-portrait" src='${result.data[x].image_url[h]}'/>`;
+                    }
+
+                    var ctn = `<div class="margin-gray"></div>
+        <div class="weui-media-box weui-media-box_text">
+
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta">日期</li>
+                <li class="weui-media-box__info__meta">${b}</li>
+            </ul>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta">用途：</li>
+                <li class="weui-media-box__info__meta">${c}</li>
+            </ul>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta">金额</li>
+                <li class="weui-media-box__info__meta">${d}元</li>
+            </ul>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta">备注：</li>
+                <li class="weui-media-box__info__meta">${e}</li>
+            </ul>
+            <ul class="weui-media-box__info">
+                <div class="work-record-image">
+                ${f}
+                </div>
+            </ul>
+        </div>`;
+                    
+                    $('#content').append(ctn);
+                }
+
+                function getSum(x,y) {
+                    return x+y
+                }
+
+                var subnumber = arr.reduce(getSum);
+                $('#sum').text(subnumber);
+
+            },
+            error: function () {
+
+            }
+        })
+        $("body").on('click','img',function() {
+            var img_src = $(this).attr('src');
+
+            var arr = [];
+            arr.push(img_src)
+
+            var pb1 = $.photoBrowser({
+
+                items: arr,
+
+            });
+
+            pb1.open();
+        });
+    })
+</script>
+</html>
